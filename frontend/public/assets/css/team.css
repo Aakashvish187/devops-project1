@@ -1,0 +1,407 @@
+/* ========================================
+   LACSO HUB - Team / Leadership Page CSS
+   ======================================== */
+
+/* ── Hero ── */
+.team-hero {
+    min-height: 44vh;
+    display: flex;
+    align-items: center;
+    padding-top: var(--nav-h);
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+}
+.team-hero-orb-1,
+.team-hero-orb-2 {
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(90px);
+    pointer-events: none;
+}
+.team-hero-orb-1 {
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(99,102,241,0.18) 0%, transparent 70%);
+    top: -150px; left: -150px;
+}
+.team-hero-orb-2 {
+    width: 400px; height: 400px;
+    background: radial-gradient(circle, rgba(6,182,212,0.14) 0%, transparent 70%);
+    bottom: -120px; right: -100px;
+}
+.team-hero h1 { margin-bottom: 20px; }
+.gradient-text {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+/* ── Founder Spotlight ── */
+.founder-spotlight {
+    position: relative;
+    max-width: 900px;
+    margin: 0 auto 64px;
+    background: linear-gradient(135deg,
+        rgba(99,102,241,0.10) 0%,
+        rgba(139,92,246,0.07) 50%,
+        rgba(6,182,212,0.06) 100%);
+    border: 1px solid rgba(99,102,241,0.35);
+    border-radius: var(--radius-lg);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    box-shadow:
+        0 0 0 1px rgba(99,102,241,0.12),
+        0 20px 60px rgba(0,0,0,0.5),
+        0 0 80px rgba(99,102,241,0.08);
+    padding: 52px 48px;
+    overflow: hidden;
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.founder-spotlight::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2), var(--accent-3));
+}
+.founder-spotlight:hover {
+    transform: translateY(-6px);
+    box-shadow:
+        0 0 0 1px rgba(99,102,241,0.25),
+        0 30px 80px rgba(0,0,0,0.6),
+        0 0 120px rgba(99,102,241,0.15);
+}
+
+.founder-spotlight-inner {
+    display: flex;
+    gap: 48px;
+    align-items: center;
+}
+
+/* Avatar */
+.team-avatar-wrap {
+    position: relative;
+    flex-shrink: 0;
+}
+.founder-avatar-wrap {
+    width: 180px;
+    height: 180px;
+}
+.avatar-glow-ring {
+    position: absolute;
+    inset: -6px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2), var(--accent-3));
+    animation: ring-spin 4s linear infinite;
+    z-index: 0;
+}
+@keyframes ring-spin {
+    from { transform: rotate(0deg); }
+    to   { transform: rotate(360deg); }
+}
+.avatar-glow-ring::after {
+    content: '';
+    position: absolute;
+    inset: 3px;
+    border-radius: 50%;
+    background: #0a0e1a;
+}
+.team-avatar {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    position: relative;
+    z-index: 1;
+    display: block;
+}
+.founder-avatar-img {
+    width: 168px;
+    height: 168px;
+    position: absolute;
+    top: 6px;
+    left: 6px;
+}
+.avatar-fallback {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: #fff;
+    position: relative;
+    z-index: 2;
+}
+
+/* Founder info */
+.founder-info { flex: 1; }
+.founder-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: linear-gradient(135deg, rgba(245,158,11,0.15), rgba(245,158,11,0.08));
+    border: 1px solid rgba(245,158,11,0.35);
+    color: #f59e0b;
+    padding: 5px 16px;
+    border-radius: 100px;
+    font-size: 0.78rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+}
+.founder-name {
+    font-size: clamp(1.8rem, 3vw, 2.4rem);
+    font-family: var(--font-heading);
+    font-weight: 800;
+    background: linear-gradient(135deg, #fff, rgba(255,255,255,0.8));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    margin-bottom: 6px;
+}
+.founder-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--accent);
+    margin-bottom: 10px;
+}
+.founder-edu {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 16px;
+}
+.founder-edu i { color: var(--accent-3); }
+.founder-bio {
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    line-height: 1.75;
+    margin-bottom: 22px;
+}
+.founder-skills-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 24px;
+}
+.team-skill-tag {
+    background: var(--accent-glow);
+    border: 1px solid var(--border-glow);
+    color: var(--accent);
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    transition: background 0.3s, transform 0.2s;
+}
+.team-skill-tag:hover {
+    background: rgba(99,102,241,0.2);
+    transform: translateY(-1px);
+}
+.founder-cta-row {
+    display: flex;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+.btn-sm {
+    padding: 10px 22px;
+    font-size: 0.85rem;
+    border-radius: 100px;
+}
+.btn-whatsapp {
+    background: #25d366;
+    color: #fff;
+    border: none;
+    box-shadow: 0 4px 16px rgba(37,211,102,0.3);
+    border-radius: 100px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 32px;
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    transition: var(--transition);
+    font-family: var(--font-main);
+}
+.btn-whatsapp:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(37,211,102,0.5);
+}
+
+/* ── Co-Founders Grid ── */
+.cofounders-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    max-width: 900px;
+    margin: 0 auto;
+}
+.cofounder-card {
+    padding: 40px 36px;
+    border-radius: var(--radius-lg);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+}
+.cofounder-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--accent-2), var(--accent-3));
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.4s ease;
+}
+.cofounder-card:hover::before { transform: scaleX(1); }
+.cofounder-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), var(--shadow-glow);
+}
+.cofounder-top {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 20px;
+}
+.team-avatar-wrap:not(.founder-avatar-wrap) {
+    width: 120px;
+    height: 120px;
+}
+.cofounder-avatar-img {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: center top;
+    border: 3px solid rgba(99,102,241,0.3);
+    transition: border-color 0.3s;
+    display: block;
+}
+.cofounder-card:hover .cofounder-avatar-img { border-color: var(--accent); }
+.cofounder-fallback {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--accent-2), var(--accent));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--font-heading);
+    font-size: 1.8rem;
+    font-weight: 800;
+    color: #fff;
+}
+.cofounder-badge-tag {
+    display: inline-flex;
+    align-items: center;
+    background: rgba(139,92,246,0.12);
+    border: 1px solid rgba(139,92,246,0.3);
+    color: var(--accent-2);
+    padding: 4px 14px;
+    border-radius: 100px;
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+.cofounder-name {
+    font-size: 1.35rem;
+    font-family: var(--font-heading);
+    font-weight: 800;
+    color: var(--text-primary);
+    margin-bottom: 4px;
+}
+.cofounder-title {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--accent-2);
+    margin-bottom: 10px;
+}
+.cofounder-edu {
+    font-size: 0.82rem;
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 14px;
+}
+.cofounder-edu i { color: var(--accent-3); }
+.cofounder-focus {
+    font-size: 0.87rem;
+    color: var(--text-muted);
+    margin-bottom: 18px;
+    line-height: 1.65;
+}
+.cofounder-focus strong { color: var(--text-primary); }
+.cofounder-skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+}
+
+/* ── Values / Mission ── */
+.team-values {
+    background: linear-gradient(135deg,
+        rgba(99,102,241,0.04) 0%,
+        rgba(6,182,212,0.03) 100%);
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+}
+.values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    text-align: center;
+}
+.value-item { padding: 16px; }
+.value-icon {
+    width: 64px; height: 64px;
+    background: var(--accent-glow);
+    border: 1px solid var(--border-glow);
+    border-radius: var(--radius-sm);
+    display: grid;
+    place-items: center;
+    font-size: 1.5rem;
+    color: var(--accent);
+    margin: 0 auto 20px;
+    transition: var(--transition);
+}
+.value-item:hover .value-icon {
+    background: linear-gradient(135deg, var(--accent), var(--accent-2));
+    color: #fff;
+    transform: scale(1.1);
+}
+.value-item h4 { margin-bottom: 10px; font-size: 1rem; }
+.value-item p { font-size: 0.88rem; }
+
+/* ── CTA Box ── */
+/* Responsive refinements handled in style.css */
+@media (max-width: 900px) {
+    .founder-spotlight-inner { flex-direction: column; text-align: center; }
+    .founder-cta-row { justify-content: center; }
+    .founder-edu { justify-content: center; }
+    .cofounders-grid { grid-template-columns: 1fr; max-width: 480px; }
+    .values-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 600px) {
+    .founder-spotlight { padding: 40px 24px; }
+    .founder-avatar-wrap { width: 140px; height: 140px; }
+    .founder-avatar-img { width: 128px; height: 128px; }
+    .values-grid { grid-template-columns: 1fr; }
+}

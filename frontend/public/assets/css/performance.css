@@ -1,0 +1,190 @@
+/* ══════════════════════════════════════════════════════════════════════
+   LACSO HUB — Performance CSS
+   Critical performance helpers: content-visibility, reduced-motion,
+   mobile animation reduction, paint isolation.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* ── Content Visibility (below-fold sections skip layout until needed) ─ */
+.section:not(.hero) {
+    content-visibility: auto;
+    contain-intrinsic-size: 0 600px;
+}
+
+/* ── Paint isolation for cards ─────────────────────────────────────── */
+.glass-card,
+.service-card,
+.pricing-card,
+.portfolio-card,
+.team-card,
+.blog-card {
+    contain: layout style;
+}
+
+/* ── will-change only on active animated elements ───────────────────── */
+.glass-card:hover,
+.btn-primary:hover,
+.nav-cta:hover {
+    will-change: transform;
+}
+
+/* Remove will-change after transition (prevents layer promotion bloat) */
+.glass-card,
+.btn-primary,
+.nav-cta {
+    will-change: auto;
+}
+
+/* ── Smooth scroll ───────────────────────────────────────────────────── */
+:root {
+    scroll-behavior: smooth;
+}
+
+/* ── Font display: Google Fonts URL already includes display=swap ─────── */
+/* No override needed — handled via ?display=swap in the <link> href */
+
+/* ══════════════════════════════════════════════════════════════════════
+   REDUCED MOTION — Accessibility + Performance
+   Disables all non-essential animations for users who prefer it,
+   AND for users on low-powered/mobile devices via media query.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+
+    .hero-orb-1,
+    .hero-orb-2 {
+        animation: none !important;
+        opacity: 0.08;
+    }
+
+    .whatsapp-float {
+        animation: none !important;
+    }
+
+    #neuralNetCanvas {
+        display: none !important;
+    }
+
+    [data-aos] {
+        opacity: 1 !important;
+        transform: none !important;
+        transition: none !important;
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   MOBILE ANIMATION REDUCTION (< 768px)
+   Heavier animations disabled on small screens for 60fps smoothness.
+   ══════════════════════════════════════════════════════════════════════ */
+
+@media (max-width: 767px) {
+    /* Disable blur-heavy backdrops on mobile GPU */
+    .glass-card {
+        backdrop-filter: none;
+        -webkit-backdrop-filter: none;
+        background: rgba(10, 14, 26, 0.85);
+    }
+
+    /* Simplify hover transforms on touch devices */
+    .glass-card:hover {
+        transform: none;
+    }
+
+    /* Reduce hero orb size - less GPU work */
+    .hero-orb-1 {
+        width: 300px;
+        height: 300px;
+        filter: blur(60px);
+    }
+
+    .hero-orb-2 {
+        width: 250px;
+        height: 250px;
+        filter: blur(60px);
+    }
+
+    /* Disable body::before radial gradients on mobile */
+    body::before {
+        opacity: 0.5;
+    }
+
+    /* Reduce parallax/scroll effects */
+    [data-aos] {
+        transition-duration: 400ms !important;
+    }
+
+    /* Simplify navbar backdrop on mobile */
+    .navbar.scrolled {
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+    }
+}
+
+/* ══════════════════════════════════════════════════════════════════════
+   LAYOUT SHIFT PREVENTION (CLS = 0)
+   Reserve space for dynamic content before it loads.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* Reserve logo space (prevents layout shift before image loads) */
+.nav-logo-img {
+    aspect-ratio: 5 / 1;
+    height: 45px;
+}
+
+/* Prevent price element CLS when currency converts */
+[data-base-price] {
+    min-width: 60px;
+    display: inline-block;
+}
+
+/* Image aspect ratio lock to prevent CLS */
+img {
+    height: auto;
+}
+
+/* ── Lazy load fade-in effect ─────────────────────────────────────────── */
+img[loading="lazy"] {
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+
+img[loading="lazy"].loaded {
+    opacity: 1;
+}
+
+/* ── Touch optimization ────────────────────────────────────────────────── */
+a,
+button,
+[role="button"] {
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+}
+
+/* Ensure minimum touch target size */
+button,
+.btn,
+.nav-link,
+.nav-cta {
+    min-height: 44px;
+}
+
+/* ── Print optimizations (reduces resource waste) ─────────────────────── */
+@media print {
+    .navbar,
+    .whatsapp-float,
+    #lh-chat-launcher,
+    #lh-chat-window,
+    #geo-popup,
+    .hero-orb-1,
+    .hero-orb-2,
+    #neuralNetCanvas {
+        display: none !important;
+    }
+}

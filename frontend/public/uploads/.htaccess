@@ -1,0 +1,16 @@
+# LACSO HUB — Uploads Security
+# Critical: PhP execution MUST be blocked in this directory to prevent
+# malicious file uploads from being executed as server-side scripts.
+
+# Deny PHP execution in uploads
+<FilesMatch "\.(php|php3|php4|php5|php7|phtml|phar|cgi|pl|py|rb|sh|shtml)$">
+    Order allow,deny
+    Deny from all
+</FilesMatch>
+
+# Deny .htaccess overrides
+Options -ExecCGI -Includes
+AddType text/plain .php .php3 .php4 .php5 .php7 .phtml .phar
+
+# Deny all directory listing
+Options -Indexes

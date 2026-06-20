@@ -1,0 +1,211 @@
+/* ========================================
+   LACSO HUB - Mobile-First Stylesheet
+   ======================================== */
+
+/* ── Spacing Scale ── */
+:root {
+    --space-xs: 8px;
+    --space-sm: 16px;
+    --space-md: 24px;
+    --space-lg: 32px;
+    --space-xl: 48px;  /* Mobile Section Spacing */
+    --space-2xl: 72px; /* Tablet Section Spacing */
+    --space-3xl: 120px;/* Desktop Section Spacing */
+    
+    --nav-h: 70px;
+    --radius: 16px;
+    --radius-lg: 24px;
+    
+    /* Colors */
+    --bg-dark: #050810;
+    --bg-card: rgba(10, 14, 26, 0.6);
+    --accent: #6366f1;
+    --accent-2: #8b5cf6;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --text-primary: #ffffff;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --border: rgba(255, 255, 255, 0.08);
+    --green: #10b981;
+}
+
+/* ── Reset & Base ── */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    font-size: 16px;
+    overflow-x: hidden;
+}
+
+/* ── Typography (Mobile First) ── */
+h1, h2, h3 { font-weight: 800; line-height: 1.2; margin-bottom: var(--space-sm); }
+h1 { font-size: 2.2rem; }
+h2 { font-size: 1.8rem; }
+h3 { font-size: 1.4rem; }
+p { color: var(--text-muted); margin-bottom: var(--space-md); max-width: 60ch; }
+
+/* ── Layout Components ── */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--space-md);
+}
+
+.section { padding: var(--space-xl) 0; }
+
+.grid-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--space-lg);
+}
+
+/* ── Navigation (Mobile First) ── */
+.navbar {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: var(--nav-h);
+    z-index: 1000;
+    background: rgba(5, 8, 16, 0.8);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+}
+
+.nav-container {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-toggle {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    cursor: pointer;
+    z-index: 1100;
+    padding: 10px;
+    min-height: 44px;
+    min-width: 44px;
+    justify-content: center;
+}
+
+.nav-toggle span {
+    width: 26px;
+    height: 3px;
+    background: #fff;
+    border-radius: 4px;
+    transition: 0.3s;
+}
+
+.nav-toggle.open span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+.nav-toggle.open span:nth-child(2) { opacity: 0; }
+.nav-toggle.open span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+
+.nav-menu {
+    position: fixed;
+    top: 0; right: -100%;
+    width: 100%; height: 100vh;
+    background: var(--bg-dark);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: var(--space-lg);
+    transition: 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
+    z-index: 1050;
+    padding: var(--space-xl);
+}
+
+.nav-menu.active { right: 0; }
+
+.nav-link {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+    text-decoration: none;
+    transition: 0.3s;
+}
+
+/* ── Service Cards (Mobile First) ── */
+.service-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    padding: var(--space-lg);
+    border-radius: var(--radius-lg);
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    text-align: center;
+}
+
+.service-icon {
+    font-size: 2.5rem;
+    color: var(--accent);
+    margin-bottom: var(--space-sm);
+}
+
+/* ── Buttons (Touch Optimized) ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 48px;
+    padding: 14px 28px;
+    border-radius: 100px;
+    font-weight: 700;
+    text-decoration: none;
+    transition: 0.3s;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+}
+
+.btn-primary { background: var(--accent-gradient); color: #fff; }
+
+/* ── Responsive Breakpoints ── */
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+    :root { --space-xl: var(--space-2xl); }
+    h1 { font-size: 3rem; }
+    h2 { font-size: 2.4rem; }
+    
+    .grid-stack { grid-template-columns: repeat(2, 1fr); }
+    
+    .section { padding: var(--space-2xl) 0; }
+    
+    .nav-toggle { display: none; }
+    .nav-menu {
+        position: static;
+        height: auto;
+        width: auto;
+        flex-direction: row;
+        background: transparent;
+        padding: 0;
+        right: 0;
+    }
+    .nav-link { font-size: 1rem; font-weight: 500; color: var(--text-muted); }
+    .nav-link:hover { color: #fff; }
+    
+    .btn { width: auto; }
+}
+
+/* Desktop (1024px+) */
+@media (min-width: 1024px) {
+    :root { --space-xl: var(--space-3xl); }
+    .grid-stack { grid-template-columns: repeat(3, 1fr); }
+    .section { padding: var(--space-3xl) 0; }
+}
+
+/* Large Desktop (1440px+) */
+@media (min-width: 1440px) {
+    .container { max-width: 1360px; }
+}

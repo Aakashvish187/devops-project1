@@ -1,0 +1,149 @@
+/* ── Dashboard Visuals Framework ── */
+:root {
+    --db-bg: rgba(10, 14, 26, 0.4);
+    --db-border: rgba(255, 255, 255, 0.05);
+    --db-accent: var(--accent);
+    --db-accent-glow: rgba(99, 102, 241, 0.2);
+    --db-glass: blur(12px);
+}
+
+.dashboard-container {
+    position: relative;
+    width: 100%;
+    height: 400px;
+    background: var(--db-bg);
+    border: 1px solid var(--db-border);
+    border-radius: var(--radius-lg);
+    backdrop-filter: var(--db-glass);
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+    margin-bottom: 30px;
+}
+
+.db-panel {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: var(--radius);
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(8px);
+    z-index: 2;
+}
+
+.db-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: var(--radius-sm);
+    padding: 12px;
+    margin-bottom: 12px;
+    transition: var(--transition);
+}
+
+.db-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: var(--accent);
+    transform: translateY(-2px);
+}
+
+.db-metric {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--accent);
+    font-family: var(--font-heading);
+    line-height: 1;
+}
+
+.db-label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 4px;
+    display: block;
+}
+
+.db-progress-bar {
+    width: 100%;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 100px;
+    overflow: hidden;
+    margin-top: 8px;
+}
+
+.db-progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--accent), var(--accent-2));
+    width: 0%;
+    /* Animated via JS */
+    border-radius: 100px;
+}
+
+/* ── Specific Dashboards Content ── */
+
+/* AI Website Dev */
+.db-browser-ui {
+    width: 85%;
+    height: 70%;
+    background: #0f172a;
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    position: relative;
+    padding-top: 30px;
+    box-shadow: 0 30px 60px rgba(0, 0, 0, 0.4);
+}
+
+.db-browser-dots {
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    display: flex;
+    gap: 6px;
+}
+
+.db-browser-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+}
+
+/* App Dev */
+.db-phone-mockup {
+    width: 160px;
+    height: 320px;
+    background: #000;
+    border: 6px solid #1e293b;
+    border-radius: 30px;
+    position: relative;
+    box-shadow: 0 0 50px rgba(99, 102, 241, 0.2);
+}
+
+/* SEO Growth */
+.db-graph-line {
+    fill: none;
+    stroke: var(--accent);
+    stroke-width: 3;
+    stroke-linecap: round;
+    filter: drop-shadow(0 0 8px var(--accent));
+}
+
+/* Common Elements */
+.db-glow-circle {
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    background: radial-gradient(circle, var(--accent-glow) 0%, transparent 70%);
+    z-index: 1;
+    pointer-events: none;
+}
+
+@media (max-width: 768px) {
+    .dashboard-container {
+        height: 300px;
+    }
+}

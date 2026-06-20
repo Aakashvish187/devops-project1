@@ -1,0 +1,13 @@
+/* ─── Counters ─── */
+.counter-num {
+    display: inline;
+}
+
+/* AOS override for dark theme */
+[data-aos] {
+    pointer-events: none;
+}
+
+[data-aos].aos-animate {
+    pointer-events: auto;
+}

@@ -1,0 +1,495 @@
+/* ========================================
+   LACSO HUB - Mobile-First Redesign
+   Architecture: Mobile (Base) -> Tablet -> Desktop
+   ======================================== */
+
+/* ── Spacing Scale (Mobile First) ── */
+:root {
+    /* Spacing Units */
+    --s-xs: 8px;
+    --s-sm: 16px;
+    --s-md: 24px;
+    --s-lg: 32px;
+    --s-xl: 48px;
+    /* Mobile Section Vertical Spacing */
+    --s-2xl: 72px;
+    /* Tablet Section Vertical Spacing */
+    --s-3xl: 120px;
+    /* Desktop Section Vertical Spacing */
+
+    /* Layout Constants */
+    --nav-h: 70px;
+    --container-px: 20px;
+    --radius: 16px;
+    --radius-lg: 24px;
+
+    /* Theme Colors (Maintained) */
+    --bg-dark: #050810;
+    --bg-card: rgba(10, 14, 26, 0.6);
+    --accent: #6366f1;
+    --accent-2: #8b5cf6;
+    --accent-3: #06b6d4;
+    --accent-gradient: linear-gradient(135deg, #6366f1 0%, #a855f7 100%);
+    --border: rgba(255, 255, 255, 0.08);
+    --text-primary: #ffffff;
+    --text-muted: #94a3b8;
+    --text-dim: #64748b;
+    --green: #10b981;
+}
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth;
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-dark);
+    color: var(--text-primary);
+    line-height: 1.6;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+}
+
+/* ── Typography (Mobile-First Optimization) ── */
+h1,
+h2,
+h3,
+h4 {
+    font-weight: 800;
+    line-height: 1.2;
+    margin-bottom: var(--s-sm);
+    color: #fff;
+}
+
+h1 {
+    font-size: 2.25rem;
+}
+
+/* Mobile Hero Title */
+h2 {
+    font-size: 1.75rem;
+}
+
+h3 {
+    font-size: 1.4rem;
+}
+
+p {
+    color: var(--text-muted);
+    margin-bottom: var(--s-md);
+    max-width: 60ch;
+}
+
+/* ── Core Layout Components ── */
+.container {
+    width: 100%;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding: 0 var(--container-px);
+}
+
+.section {
+    padding: var(--s-xl) 0;
+}
+
+.grid-stack {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: var(--s-lg);
+}
+
+@media (min-width: 768px) {
+    .grid-stack {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+/* ── Navigation (Mobile App Experience) ── */
+/* ── Navigation Styles Removed - Consolidated in style.css for single source of truth ── */
+
+
+/* ── Responsive Service Presentation (Stacked Cards) ── */
+.service-card,
+.trust-card {
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid var(--border);
+    padding: var(--s-lg);
+    border-radius: var(--radius-lg);
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.service-icon {
+    font-size: 2.8rem;
+    color: var(--accent);
+    margin-bottom: var(--s-md);
+    background: var(--accent-glow);
+    width: 72px;
+    height: 72px;
+    display: grid;
+    place-items: center;
+    border-radius: 18px;
+}
+
+.service-features {
+    list-style: none;
+    text-align: left;
+    width: 100%;
+    margin-bottom: var(--s-lg);
+}
+
+.service-features li {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.95rem;
+    color: var(--text-muted);
+    margin-bottom: 12px;
+}
+
+.service-features li::before {
+    content: '✓';
+    color: var(--green);
+    font-weight: 900;
+}
+
+/* ── Touch Interaction (Buttons) ── */
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 52px;
+    /* Large touch area */
+    padding: 16px 32px;
+    border-radius: 100px;
+    font-weight: 700;
+    transition: 0.3s;
+    font-size: 1.05rem;
+    border: none;
+    width: 100%;
+    margin-bottom: 12px;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: #fff;
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 1px solid var(--border);
+    color: #fff;
+}
+
+/* ── Content Layout Optimization ── */
+.text-center-mobile {
+    text-align: center;
+}
+
+.img-responsive {
+    width: 100%;
+    height: auto;
+    border-radius: var(--radius);
+}
+
+/* ── Spacing Utilities ── */
+.mb-sm {
+    margin-bottom: var(--s-sm);
+}
+
+.mb-md {
+    margin-bottom: var(--s-md);
+}
+
+.mb-lg {
+    margin-bottom: var(--s-lg);
+}
+
+/* ══════════════════════════════════════
+   RESPONSIVE BREAKPOINTS (Mobile First)
+══════════════════════════════════════ */
+
+/* Standard Phones (480px+) */
+@media (min-width: 480px) {
+    .container {
+        padding: 0 24px;
+    }
+}
+
+/* Tablets (768px+) */
+@media (min-width: 768px) {
+    :root {
+        --s-xl: var(--s-2xl);
+        --container-px: 32px;
+    }
+
+    h1 {
+        font-size: 3rem;
+    }
+
+    h2 {
+        font-size: 2.25rem;
+    }
+
+    .navbar,
+    .nav-container {
+        overflow: visible !important;
+    }
+
+    .section {
+        padding: var(--s-xl) 0;
+    }
+
+    /* Desktop Nav Transition */
+    .nav-toggle {
+        display: none !important;
+    }
+
+    .nav-menu {
+        position: static;
+        height: auto;
+        width: auto;
+        max-height: none !important;
+        flex-direction: row !important;
+        display: flex !important;
+        background: transparent !important;
+        padding: 0 !important;
+        right: 0;
+        gap: 8px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+        overflow: visible !important;
+    }
+
+    .nav-menu li {
+        display: block !important;
+    }
+
+    .nav-link {
+        font-size: 0.9rem !important;
+        font-weight: 500 !important;
+        color: var(--text-muted) !important;
+        padding: 8px 16px !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .nav-link:hover {
+        color: #fff !important;
+        background: rgba(255, 255, 255, 0.05) !important;
+        border-radius: 8px !important;
+    }
+
+    .nav-cta {
+        display: flex !important;
+        width: auto !important;
+        margin-bottom: 0 !important;
+        opacity: 1 !important;
+        visibility: visible !important;
+    }
+
+    .btn {
+        width: auto;
+        margin-right: 12px;
+    }
+
+    .nav-logo-img {
+        height: 40px !important;
+    }
+
+    .hero-title {
+        font-size: 3.5rem !important;
+    }
+
+    .hero-desc {
+        font-size: 1.1rem !important;
+    }
+
+    /* Dropdown Desktop */
+    .nav-dropdown {
+        position: relative;
+    }
+
+    .dropdown-menu {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        background: #0a0e1a;
+        border: 1px solid var(--border);
+        border-radius: 12px;
+        padding: 16px;
+        min-width: 220px;
+        display: none !important;
+        flex-direction: column;
+        gap: 12px;
+        z-index: 3000;
+    }
+
+    .nav-dropdown:hover .dropdown-menu {
+        display: flex !important;
+    }
+
+    .dropdown-menu li {
+        list-style: none;
+    }
+
+    .dropdown-menu a {
+        font-size: 0.85rem !important;
+        color: var(--text-muted) !important;
+        padding: 4px 0 !important;
+    }
+
+    .dropdown-menu a:hover {
+        color: #fff !important;
+    }
+
+    /* Side-by-Side Restore */
+    .split-layout {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 60px;
+        align-items: center;
+    }
+}
+
+/* Laptops (1024px+) */
+@media (min-width: 1024px) {
+    :root {
+        --s-xl: var(--s-3xl);
+    }
+
+    .section {
+        padding: var(--s-xl) 0;
+    }
+
+    h1 {
+        font-size: 3.5rem;
+    }
+}
+
+/* Desktop (1440px+) */
+@media (min-width: 1440px) {
+    .container {
+        max-width: 1360px;
+    }
+
+    h1 {
+        font-size: 4.5rem;
+    }
+}
+
+/* ── Spacing Consistency Fixes for Components ── */
+.card-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .card-stack {
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+}
+
+/* Grid Utilities (Desktop First, then Mobile overrides) */
+.trust-grid,
+.timeline-grid,
+.team-grid,
+.stats-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 24px;
+}
+
+@media (min-width: 768px) {
+    .stats-grid {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .trust-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .timeline-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+    }
+
+    .team-cards {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 24px;
+    }
+
+    .team-grid {
+        grid-template-columns: 1fr 2fr;
+        gap: 32px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .trust-grid {
+        gap: 32px;
+    }
+
+    .timeline-grid {
+        gap: 40px;
+    }
+
+    .stats-grid {
+        gap: 32px;
+    }
+}
+
+/* ── Specific Fixes for index.php ── */
+@media (max-width: 768px) {
+    .hero-mockup-wrapper {
+        display: none;
+    }
+
+    .hero-actions {
+        flex-direction: column;
+    }
+
+    .hero-actions .btn {
+        width: 100%;
+        margin-right: 0;
+    }
+
+    .mockup-grid {
+        grid-template-columns: 1fr !important;
+    }
+}
+
+/* ── Spacing Scale Utilities ── */
+.section {
+    padding: var(--s-xl) 0;
+}
+
+@media (min-width: 768px) {
+    .section {
+        padding: var(--s-2xl) 0;
+    }
+}
+
+@media (min-width: 1024px) {
+    .section {
+        padding: var(--s-3xl) 0;
+    }
+}
