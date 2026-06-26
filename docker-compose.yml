@@ -1,0 +1,17 @@
+services:
+
+  backend:
+    build: ./backend
+    container_name: lacsohub-backend
+    ports:
+      - "5000:5000"
+
+  frontend:
+    build: ./frontend
+    container_name: lacsohub-frontend
+    ports:
+      - "80:80"
+
+    depends_on:
+      - backend
+      
