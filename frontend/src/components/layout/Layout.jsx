@@ -400,7 +400,7 @@ function WhatsAppFloat() {
 // ─────────────────────────────────────────────
 export default function Layout() {
   return (
-    <div className="min-h-screen bg-[#0a0e1a] flex flex-col">
+    <div className="min-h-screen flex flex-col" style={{ background: '#050816' }}>
       <Navbar />
       <main className="flex-1"><Outlet /></main>
       <Footer />
